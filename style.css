@@ -1,0 +1,232 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: none;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(-45deg, #fee9f7, #e8f5fe, #fef2e8, #f0ffe8);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    font-family: 'Arial Rounded MT Bold', Arial, sans-serif;
+    overflow: hidden;
+    position: relative;
+}
+
+.cursor {
+    width: 20px;
+    height: 20px;
+    background: pink;
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    mix-blend-mode: difference;
+    transition: transform 0.2s;
+}
+
+.container {
+    text-align: center;
+    z-index: 1;
+}
+
+h1 {
+    font-size: 3.5rem;
+    color: #ff69b4;
+    text-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
+    margin-bottom: 2rem;
+    opacity: 0;
+}
+
+.greeting {
+    font-size: 1.5rem;
+    color: #8a2be2;
+    margin-bottom: 3rem;
+    min-height: 2em;
+}
+
+.cta-button {
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    background: linear-gradient(45deg, #ff69b4, #ff99cc);
+    border: none;
+    border-radius: 50px;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(255, 105, 180, 0.5);
+    transition: transform 0.3s, box-shadow 0.3s;
+    opacity: 0;
+}
+
+.cta-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 25px rgba(255, 105, 180, 0.7);
+}
+
+.floating {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@media (max-width: 768px) {
+    h1 { font-size: 2rem; }
+    .greeting { font-size: 1.2rem; }
+    .cta-button { font-size: 1rem; }
+}
+
+/* added */
+/* PHOTO GALLERY */
+
+.photo-gallery{
+    width:90%;
+    max-width:1200px;
+    margin:60px auto;
+    text-align:center;
+}
+
+.photo-gallery h2{
+    font-family:'Dancing Script',cursive;
+    font-size:3rem;
+    color:#ff69b4;
+    margin-bottom:30px;
+}
+
+.gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.gallery-item{
+    overflow:hidden;
+    border-radius:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+    transition:.4s;
+}
+
+.gallery-item:hover{
+    transform:translateY(-8px) scale(1.03);
+}
+
+.gallery-item img{
+    width:100%;
+    height:300px;
+    object-fit:cover;
+    display:block;
+    transition:.5s;
+}
+
+.gallery-item:hover img{
+    transform:scale(1.1);
+}
+
+
+/* added */
+
+.photo-gallery{
+    text-align:center;
+    margin:80px auto;
+}
+
+.photo-gallery h2{
+    font-size:3rem;
+    color:#ff69b4;
+    margin-bottom:40px;
+}
+
+.gallery-wrap{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+.gallery-stage{
+    width:320px;
+    height:320px;
+    perspective:1200px;
+}
+
+.cube{
+    width:100%;
+    height:100%;
+    position:relative;
+    transform-style:preserve-3d;
+    transition:transform .8s ease;
+}
+
+.face{
+    position:absolute;
+    width:320px;
+    height:320px;
+    border-radius:20px;
+    background-size:cover;
+    background-position:center;
+    box-shadow:0 15px 35px rgba(0,0,0,.25);
+}
+
+.face1{
+    background-image:url("images/photo1.jpeg");
+    transform:rotateY(0deg) translateZ(160px);
+}
+
+.face2{
+    background-image:url("images/photo2.jpeg");
+    transform:rotateY(90deg) translateZ(160px);
+}
+
+.face3{
+    background-image:url("images/photo3.jpeg");
+    transform:rotateY(180deg) translateZ(160px);
+}
+
+.face4{
+    background-image:url("images/photo4.jpeg");
+    transform:rotateY(-90deg) translateZ(160px);
+}
+
+.gallery-ui{
+    margin-top:30px;
+}
+
+.gallery-ui button{
+    width:55px;
+    height:55px;
+    margin:0 10px;
+    border:none;
+    border-radius:50%;
+    cursor:pointer;
+    font-size:22px;
+    color:white;
+    background:#ff69b4;
+}
+
+.gallery-ui button:hover{
+    transform:scale(1.1);
+}
+
+
+
+/* added */
+
+
+html {
+    overflow-y: scroll;
+}
+
+body {
+    overflow-y: visible;
+    min-height: 100vh;
+    height: auto;
+}
