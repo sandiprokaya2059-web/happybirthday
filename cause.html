@@ -36,5 +36,52 @@
     <script src="cause.js">
        
     </script>
+
+    <!-- START BACKGROUND AUDIO -->
+<audio id="bg-music" src="./assets/song.mp3" loop></audio>
+
+<script>
+(function() {
+    const audio = document.getElementById('bg-music');
+    
+    // ADJUST VOLUME HERE: 0.0 (silent) to 1.0 (loudest)
+    audio.volume = 0.3; 
+
+    // Restore exact position and playing state from the last page
+    const savedTime = localStorage.getItem('musicTime');
+    const wasPlaying = localStorage.getItem('musicPlaying');
+
+    if (savedTime) {
+        audio.currentTime = parseFloat(savedTime);
+    }
+
+    // Try to auto-resume if it was already playing on the last page
+    if (wasPlaying === 'true') {
+        const playAttempt = audio.play();
+        if (playAttempt !== undefined) {
+            playAttempt.catch(() => {
+                // Browser blocked auto-resume; wait for the first click on the document to start
+                document.addEventListener('click', () => {
+                    audio.play();
+                    localStorage.setItem('musicPlaying', 'true');
+                }, { once: true });
+            });
+        }
+    } else {
+        // First-time visit: play as soon as the user clicks anywhere on the page
+        document.addEventListener('click', () => {
+            audio.play();
+            localStorage.setItem('musicPlaying', 'true');
+        }, { once: true });
+    }
+
+    // Continuously save the exact song timestamp and state before page unloads
+    window.addEventListener('beforeunload', () => {
+        localStorage.setItem('musicTime', audio.currentTime);
+        localStorage.setItem('musicPlaying', !audio.paused);
+    });
+})();
+</script>
+<!-- END BACKGROUND AUDIO -->
 </body>
 </html>
